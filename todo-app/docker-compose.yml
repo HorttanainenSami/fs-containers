@@ -7,10 +7,8 @@ services:
       args:
         VITE_BACKEND_URL: http://localhost:8080/api
       dockerfile: ./Dockerfile # This will simply tell which dockerfile to read
-    volumes:
-      - ./todo-frontend:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml"
 
-  api:
+  backend:
     image: todo-backend
     build:
       context: ./todo-backend
@@ -21,8 +19,6 @@ services:
     depends_on:
       - mongo
       - redis
-    volumes:
-      - ./todo-backend:/usr/src/app
   mongo:
     image: mongo
     environment:
@@ -45,5 +41,6 @@ services:
       - 8080:80
     depends_on:
       - app
+      - backend
 volumes:
   mongo_data:
