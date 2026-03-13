@@ -1,0 +1,9 @@
+services:
+  docker-todo-frontend:
+    image: docker-todo-frontend
+    build: 
+      context: .
+      args:
+        VITE_BACKEND_URL: http://localhost:3000
+    ports:
+      - 8000:80

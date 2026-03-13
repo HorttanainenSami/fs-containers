@@ -1,0 +1,45 @@
+sami@sami-ThinkPad-T490s:~/Desktop/fullstack/fs-containers$ docker exec -it todo-backend-mongo-1 mongosh the_database -u the_username -p the_password
+Current Mongosh Log ID:	69b276e1c08f5924bf8563b0
+Connecting to:		mongodb://<credentials>@127.0.0.1:27017/the_database?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.7.0
+Using MongoDB:		8.2.5
+Using Mongosh:		2.7.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+the_database> sh
+SharedArrayBuffer  sh                 show
+
+the_database> show dbs
+the_database  56.00 KiB
+the_database> show collections
+todos
+the_database> db.todos.find({})
+[
+  { _id: ObjectId('69b19bfd877b71a1058563b1'), text: 'asd', done: false },
+  {
+    _id: ObjectId('69b19bfd877b71a1058563b2'),
+    text: 'Learn about containers',
+    done: false
+  }
+]
+the_database> db.todos.insertOne({text: "Increase the number of tools in my tool belt", done: false})
+{
+  acknowledged: true,
+  insertedId: ObjectId('69b277e6c08f5924bf8563b1')
+}
+the_database> db.todos.find({})
+[
+  { _id: ObjectId('69b19bfd877b71a1058563b1'), text: 'asd', done: false },
+  {
+    _id: ObjectId('69b19bfd877b71a1058563b2'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('69b277e6c08f5924bf8563b1'),
+    text: 'Increase the number of tools in my tool belt',
+    done: false
+  }
+]
+the_database> 
+
